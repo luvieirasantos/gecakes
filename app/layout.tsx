@@ -1,6 +1,7 @@
 import '../styles/globals.css'
 import { Quicksand, Pacifico } from 'next/font/google'
 import type { Metadata } from 'next'
+import Footer from '@/components/Footer'
 
 const quicksand = Quicksand({
   subsets: ['latin'],
@@ -23,6 +24,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="pt-BR" className={`${quicksand.variable} ${pacifico.variable}`}>
       <body className="bg-fundo text-neutral-800 font-sans antialiased">
         {children}
+        <Footer />
       </body>
     </html>
   )
