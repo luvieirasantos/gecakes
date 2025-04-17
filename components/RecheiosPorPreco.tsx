@@ -1,13 +1,18 @@
+import { Candy, Layers, Sparkles, CheckCircle } from 'lucide-react'
+import { JSX } from 'react'
+
 type CategoriaRecheio = {
   preco: string
   tipo: string
   recheios: string[]
+  icon: JSX.Element
 }
 
 const categorias: CategoriaRecheio[] = [
   {
     preco: 'R$65 / kg',
     tipo: 'Recheios Simples',
+    icon: <Candy className="w-5 h-5 text-marrom" />,
     recheios: [
       'Brigadeiro',
       'Beijinho',
@@ -23,6 +28,7 @@ const categorias: CategoriaRecheio[] = [
   {
     preco: 'R$70 / kg',
     tipo: 'Recheios Mistos',
+    icon: <Layers className="w-5 h-5 text-marrom" />,
     recheios: [
       'Ninho com Chocolate',
       'Ninho com Morango',
@@ -38,6 +44,7 @@ const categorias: CategoriaRecheio[] = [
   {
     preco: 'R$80 / kg',
     tipo: 'Recheios Especiais',
+    icon: <Sparkles className="w-5 h-5 text-marrom" />,
     recheios: [
       'Ninho com Nutella',
       'Red Velvet',
@@ -50,14 +57,24 @@ const categorias: CategoriaRecheio[] = [
 export default function RecheiosPorPreco() {
   return (
     <div className="space-y-10">
-      <h2 className="text-2xl font-script text-center">Sabores e Recheios 🍫🍓</h2>
+      <h2 className="text-2xl font-script text-center mb-2">Sabores e Recheios</h2>
+
       {categorias.map((cat, index) => (
-        <div key={index} className="bg-white rounded-xl shadow-md p-6 border-l-4 border-rosaMedio">
-          <h3 className="text-xl font-bold text-marrom">{cat.tipo}</h3>
-          <p className="text-sm text-marromEscuro mb-3 italic">{cat.preco}</p>
-          <ul className="list-disc pl-5 space-y-1 text-marrom text-sm">
+        <div
+          key={index}
+          className="bg-white rounded-xl shadow-md p-6 border-l-4 border-rosaMedio space-y-3"
+        >
+          <div className="flex items-center gap-2">
+            {cat.icon}
+            <h3 className="text-lg font-bold text-marrom">{cat.tipo}</h3>
+          </div>
+          <p className="text-sm text-marromEscuro italic">{cat.preco}</p>
+          <ul className="space-y-1 text-sm">
             {cat.recheios.map((item, i) => (
-              <li key={i}>{item}</li>
+              <li key={i} className="flex items-start gap-2 text-marrom">
+                <CheckCircle className="w-4 h-4 mt-0.5 text-marrom" />
+                {item}
+              </li>
             ))}
           </ul>
         </div>
